@@ -1,0 +1,6 @@
+*.pyc
+.venv
+.ipynb_checkpoints
+.DS_Store
+*.egg-info
+*__pycache__*
