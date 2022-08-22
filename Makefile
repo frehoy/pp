@@ -19,6 +19,8 @@ clean :
 	rm -rf .venv
 	find . -name "*.pyc" -delete
 	rm -rf *.egg-info
+	rm -rf .mypy_cache
+	rm -rf .pytest_cache
 	find . -name '*__pycache__*' -delete
 
 update : env
@@ -35,7 +37,8 @@ dbuild :
 ddoit : dbuild
 	docker run --interactive --tty --rm pp:latest pp --doit
 
-check:
+check: env
 	.venv/bin/black .
-	.venv/bin/mypy pp
-	.venv/bin/isort pp
+	.venv/bin/mypy pp test
+	.venv/bin/isort pp test
+	.venv/bin/pytest
