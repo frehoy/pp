@@ -19,5 +19,5 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     entry_points={"console_scripts": ["pp = pp.cli:main"]},
-    python_requires='>=3.8',
+    python_requires=">=3.10",
 )
