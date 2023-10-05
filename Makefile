@@ -32,7 +32,7 @@ update : env
 	touch .venv/bin/activate
 
 dbuild : 
-	 docker build -t pp:latest .
+	 bin/docker-build
 
 ddoit : dbuild
 	docker run --interactive --tty --rm pp:latest pp --doit

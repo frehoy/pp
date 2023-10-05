@@ -3,16 +3,17 @@ on: [push]
 jobs:
   CI:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.10"]
+
     steps:
-      - run: echo "Job triggered by ${{ github.event_name }} event. Running on {{ runner.os }} on branch {{ github.ref }}"
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set PYTHON_VERSION from .tool-versions
+        run: |
+          echo "PYTHON_VERSION=$(grep python .tool-versions | awk '{print $2}')" >> "$GITHUB_ENV"
+      - run: echo "Job triggered by ${{ github.event_name }} event. Running on ${{ runner.os }} on branch ${{ github.ref }} for python version ${{ env.PYTHON_VERSION }}"
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: ${{ env.PYTHON_VERSION }}
       - name: Run `make check`
         run: make check
