@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+PYTHON_VERSION=$(grep python .tool-versions | awk '{print $2}')
+SHORT_SHA=$(git rev-parse --short HEAD)
+
+docker build \
+    --build-arg="PYTHON_VERSION=$PYTHON_VERSION" \
+    --tag pp:latest \
+    --tag pp:"$SHORT_SHA" \
+    .
