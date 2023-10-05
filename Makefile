@@ -2,7 +2,7 @@ env : .venv/bin/activate
 
 .venv/bin/activate : lock.txt requirements.txt requirements_dev.txt setup.py
 	@# Create a new venv if it doesn't exist already
-	test -d .venv || python3 -m venv .venv 
+	test -d .venv || python -m venv .venv 
 	@# Always use latest pip, setuptools and wheel
 	.venv/bin/pip install --upgrade pip setuptools wheel 
 	@# Install requirements

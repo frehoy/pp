@@ -1,6 +1,11 @@
 # pp
 
-Python project skeleton. All you need is a python3 install, from python.org or homebrew or whatever.
+Python project skeleton. All you need is [asdf](https://asdf-vm.com/) and
+
+```sh
+asdf plugin add python
+asdf install python
+```
 
 Add packages you need to `requirements.txt`, run `make env` to create a virtual env with those package.
 Activate the env with `source .venv/bin/activate`. Run `deactivate` to escape from the env.
